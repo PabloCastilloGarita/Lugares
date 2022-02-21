@@ -28,4 +28,13 @@
     <string name="msg_web_add">Sitio WEB del lugar</string>
     <string name="msg_lugar_add">Lugar agregado</string>
     <string name="bt_add_lugar">Agregar Lugar</string>
+
+    <string name="bt_update_lugar">Actualizar Lugar</string>
+    <string name="msg_lugar_update">Lugar actualizado</string>
+
+    <string name="msg_lugar_delete">Lugar Eliminado</string>
+    <string name="menu_delete">Eliminar Lugar</string>
+    <string name="msg_seguroBorrar">"¿Esta seguro de elimnar "</string>
+    <string name="no">No</string>
+    <string name="si">Si</string>
 </resources>

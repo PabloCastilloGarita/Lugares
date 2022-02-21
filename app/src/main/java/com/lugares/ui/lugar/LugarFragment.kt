@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.lugares.R
+import com.lugares.adapter.LugarAdapter
 import com.lugares.databinding.FragmentLugarBinding
 import com.lugares.viewmodel.LugarViewModel
 
@@ -21,13 +23,25 @@ class LugarFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        lugarViewModel =
-            ViewModelProvider(this).get(LugarViewModel::class.java)
+        lugarViewModel = ViewModelProvider(this).get(LugarViewModel::class.java)
 
         _binding = FragmentLugarBinding.inflate(inflater, container, false)
 
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_nav_lugar_to_addLugarFragment)
+        }
+
+        //activar el recycler
+        val lugarAdapter = LugarAdapter() //se crea un objeto adapter
+        val reciclador = binding.reciclador // se recupera el recycler view de la vista
+
+        reciclador.adapter = lugarAdapter // se asigna lugarAdapter como el adapter de reciclador
+        reciclador.layoutManager = LinearLayoutManager(requireContext())
+
+        //se crea un "observador" para mostrar la info de la tabla lugares...
+        //se actualiza cuando cambio el set de  datos
+        lugarViewModel.getAllData.observe(viewLifecycleOwner) { lugares ->
+            lugarAdapter.setData(lugares)
         }
 
         return binding.root
