@@ -42,7 +42,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/msg_correo_add"
             android:textAlignment="center"
-            android:textSize="16"
+            android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.164"
             app:layout_constraintStart_toEndOf="@+id/imagen"

@@ -47,6 +47,7 @@ class UpdateLugarFragment : Fragment() {
          binding.btPhone.setOnClickListener() { hacerLlamada() }
          binding.btWhatsapp.setOnClickListener() { enviarWhatsApp() }
          binding.btLocation.setOnClickListener() { verMapa() }
+         binding.btWeb.setOnClickListener() { verWeb() }
 
         setHasOptionsMenu(true)//este fragmento debe tener un menu adicional
 
@@ -158,7 +159,7 @@ class UpdateLugarFragment : Fragment() {
             val correo = binding.etCorreo.text.toString()
             val telefono = binding.etTelefono.text.toString()
             val web = binding.etWeb.text.toString()
-            val lugar = Lugar(args.lugar.id, nombre, correo, telefono, web, 0.0, 0.0, 0.0, "", "")
+            val lugar = Lugar(args.lugar.id, nombre, correo, telefono, web, args.lugar.latitud, args.lugar.longitud, args.lugar.altura, "", "")
             lugarViewModel.updateLugar(lugar)
             Toast.makeText(requireContext(),
             getString(R.string.msg_lugar_update),
