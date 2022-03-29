@@ -19,7 +19,7 @@ android {
 
     defaultConfig {
         applicationId "com.lugares"
-        minSdk 24
+        minSdk 27
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -51,6 +51,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.0.4')
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.google.firebase:firebase-storage-ktx'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
@@ -66,7 +67,10 @@ dependencies {
     //implementation 'androidx.room:room-ktx:2.4.2'
 
     //para utilizar la navegacion entre fragmentos... navegacion segura pasando info
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
     implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.4.1'
+
 
     //para determinar ubicacion gps y usar cámara
     implementation 'com.google.android.gms:play-services-location:19.0.1'

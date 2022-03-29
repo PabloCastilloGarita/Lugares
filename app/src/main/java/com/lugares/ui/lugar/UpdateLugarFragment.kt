@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.lugares.R
 import com.lugares.databinding.FragmentUpdateLugarBinding
 import com.lugares.model.Lugar
@@ -23,6 +25,8 @@ class UpdateLugarFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val args by navArgs<UpdateLugarFragmentArgs>()
+
+    private lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,6 +52,24 @@ class UpdateLugarFragment : Fragment() {
          binding.btWhatsapp.setOnClickListener() { enviarWhatsApp() }
          binding.btLocation.setOnClickListener() { verMapa() }
          binding.btWeb.setOnClickListener() { verWeb() }
+
+        if(args.lugar.rutaAudio?.isNotEmpty() == true){
+            mediaPlayer = MediaPlayer()
+            mediaPlayer.setDataSource(args.lugar.rutaAudio)
+            mediaPlayer.prepare()
+            binding.btPlay.isEnabled=true
+            binding.btPlay.setOnClickListener { mediaPlayer.start() }
+        }else{
+            binding.btPlay.isEnabled=false
+        }
+
+
+        if(args.lugar.rutaAudio?.isNotEmpty() == true){
+            Glide.with(requireContext())
+                .load(args.lugar.rutaImagen)
+                .fitCenter()
+                .into(binding.imagen)
+        }
 
         setHasOptionsMenu(true)//este fragmento debe tener un menu adicional
 
@@ -159,7 +181,9 @@ class UpdateLugarFragment : Fragment() {
             val correo = binding.etCorreo.text.toString()
             val telefono = binding.etTelefono.text.toString()
             val web = binding.etWeb.text.toString()
-            val lugar = Lugar(args.lugar.id, nombre, correo, telefono, web, args.lugar.latitud, args.lugar.longitud, args.lugar.altura, "", "")
+            val lugar = Lugar(args.lugar.id, nombre, correo, telefono, web,
+                args.lugar.latitud, args.lugar.longitud, args.lugar.altura,
+                args.lugar.rutaAudio,args.lugar.rutaImagen )
             lugarViewModel.updateLugar(lugar)
             Toast.makeText(requireContext(),
             getString(R.string.msg_lugar_update),
