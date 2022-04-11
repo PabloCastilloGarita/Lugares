@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btGoogle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,7 +10,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/correo_usuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tv_correo"
@@ -66,5 +67,13 @@
             android:layout_weight="1"
             android:contentDescription="@string/msg_btLogin"
             app:srcCompat="@drawable/ic_login" />
+
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/common_google_signin_btn_text_light_normal" />
+
 </LinearLayout>
