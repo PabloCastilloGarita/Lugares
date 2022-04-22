@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(this,gso)
-        binding.btGoogle.setOnClickListener { googleSignIn() }
+        binding.botonGoogle.setOnClickListener { googleSignIn() }
         
     }
 
